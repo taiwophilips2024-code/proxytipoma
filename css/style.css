@@ -669,11 +669,9 @@ h5{
   .navbar {
     padding: 20px;
   }
-  .navbar .nav-links a{
-    display: none;
-  }
   .navbar {
     padding: 20px 5%;
+    position: relative;
 }
 .hamburger {
         display: flex;
@@ -695,33 +693,34 @@ h5{
     }
 
     .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 
-        background: #111;
-        padding: 25px 0;
+    background: #111;
+    padding: 25px 0;
 
-        transform: translateY(-120%);
-        opacity: 0;
-        visibility: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 
-        transition: transform 0.4s ease, opacity 0.4s ease;
-        z-index: 1001;
-    }
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+    z-index: 1001;
+}
 
-    .nav-links.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
-
+.nav-links.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
     .hamburger.toggle span:nth-child(1) {
         transform: translateY(9.5px) rotate(45deg);
     }
@@ -733,9 +732,9 @@ h5{
     .hamburger.toggle span:nth-child(3) {
         transform: translateY(-9.5px) rotate(-45deg);
     }
+}
 
-/* Show hamburger */
-
+/* Smaller-screen layout */
 @media screen and (max-width: 768px) {
 
     /* Hamburger */
@@ -789,17 +788,4 @@ h5{
   .large-card .image-wrapper {
     aspect-ratio: 16 / 10; 
   }
-}
-
-
-
-
-
-
-
-
-
-@media (max-width: 768px) {
-  
-}
 }

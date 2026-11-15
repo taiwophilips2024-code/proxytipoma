@@ -1,24 +1,25 @@
-const hamburger = document.getElementById("hamburger");
-const navLinks = document.getElementById("navLinks");
+document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
 
-hamburger.addEventListener("click", () => {
+    if (!hamburger || !navLinks) return;
 
-    hamburger.classList.toggle("toggle");
-    navLinks.classList.toggle("active");
-    // navLinks.classList.toggle("show");
-    
+    // Toggle mobile navigation
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("toggle");
+        navLinks.classList.toggle("active");
 
-});
-
-// Close menu after clicking a link
-
-navLinks.querySelectorAll("a").forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        hamburger.classList.remove("toggle");
-        navLinks.classList.remove("active");
-
+        // Update accessibility state
+        const isExpanded = hamburger.classList.contains("toggle");
+        hamburger.setAttribute("aria-expanded", isExpanded);
     });
 
+    // Close menu after clicking a navigation link
+    navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            hamburger.classList.remove("toggle");
+            navLinks.classList.remove("active");
+            hamburger.setAttribute("aria-expanded", "false");
+        });
+    });
 });
